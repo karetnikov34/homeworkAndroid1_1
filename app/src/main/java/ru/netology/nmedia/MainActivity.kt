@@ -11,16 +11,11 @@ import kotlin.math.log10
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding // простой способ от google
-//    private var _binding: ActivityMainBinding? = null // так советует google инициализировать Binding-класс для каждого layout, в целях использования с фрагментами вместо строки 10 и 19
-//    val binding = ActivityMainBinding // см. строку 11
-//        get() = binding!! // см. строку 11
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//      _binding = ActivityMainBinding.inflate(layoutInflater) // см. строку 11
-//      val binding = ActivityMainBinding.inflate(layoutInflater) // инициализация Binding-класса из лекции
-        binding = ActivityMainBinding.inflate(layoutInflater) // простой способ от google
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val post = Post(
@@ -43,11 +38,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 likes.setImageResource(R.drawable.ic_like_24)
             }
-//            likesCount.text = post.likesCount.toString()
             likesCount.text = compactDecimalFormat(post.likesCount)
-//            shareCount.text = post.shareCount.toString()
             shareCount.text = compactDecimalFormat(post.shareCount)
-//            viewCount.text = post.viewCount.toString()
             viewCount.text = compactDecimalFormat(post.viewCount)
 
             binding.likes.setOnClickListener {
@@ -60,14 +52,12 @@ class MainActivity : AppCompatActivity() {
                     likes.setImageResource(R.drawable.ic_like_24)
                     post.likesCount--
                 }
-//                likesCount.text = post.likesCount.toString()
                 likesCount.text = compactDecimalFormat(post.likesCount)
             }
 
             binding.share.setOnClickListener {
                 Log.d("ActivityMainShare", "onCreate: ClickedShare")
                 post.shareCount++
-//                shareCount.text = post.shareCount.toString()
                 shareCount.text = compactDecimalFormat(post.shareCount)
             }
 
